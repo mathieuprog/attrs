@@ -7,6 +7,7 @@ Unifying atom and string key handling for user data (attrs maps) given to Ecto's
 ```elixir
 Attrs.get(%{foo: 1}, :foo) == 1
 Attrs.get(%{"foo" => 1}, :foo) == 1
+Attrs.get(%{foo: 1}, :bar) == nil
 Attrs.get(%{foo: 1}, :bar, 2) == 2
 ```
 
@@ -15,7 +16,6 @@ Attrs.get(%{foo: 1}, :bar, 2) == 2
 ```elixir
 Attrs.put(%{"foo" => 1}, :bar, 2) == %{"foo" => 1, "bar" => 2}
 Attrs.put(%{foo: 1}, :bar, 2) == %{foo: 1, bar: 2}
-Attrs.put(%{}, :bar, 2) == %{bar: 2}
 ```
 
 ## Attrs.merge(attrs1, attrs2)
