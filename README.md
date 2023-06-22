@@ -33,3 +33,19 @@ Attrs.normalize_keys(%{"foo" => 1, bar: 2}) == %{"foo" => 1, "bar" => 2}
 Attrs.normalize_keys(%{foo: 1, bar: 2}) == %{foo: 1, bar: 2}
 Attrs.normalize_keys(%{"foo" => 1, "bar" => 2}) == %{"foo" => 1, "bar" => 2}
 ```
+
+## Installation
+
+Add `attrs` for Elixir as a dependency in your `mix.exs` file:
+
+```elixir
+def deps do
+  [
+    {:attrs, "~> 0.1.0"}
+  ]
+end
+```
+
+## HexDocs
+
+HexDocs documentation can be found at [https://hexdocs.pm/attrs](https://hexdocs.pm/attrs).
