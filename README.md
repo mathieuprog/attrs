@@ -1,6 +1,6 @@
 # Attrs
 
-Unifying atom and string key handling for user data (attrs maps) given to Ecto's cast function
+Unifying atom and string key handling for user data (attrs maps) given to Ecto's cast function.
 
 ## Attrs.get(attrs, key, default)
 
