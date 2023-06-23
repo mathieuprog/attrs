@@ -9,6 +9,10 @@ defmodule Attrs do
     raise "key passed to Attrs.get/3 must be an atom"
   end
 
+  def has?(attrs, key) when is_atom(key) do
+    Map.has_key?(attrs, key) || Map.has_key?(attrs, to_string(key))
+  end
+
   def put(%{} = attrs, key, value) when is_atom(key) and map_size(attrs) == 0 do
     %{key => value}
   end
