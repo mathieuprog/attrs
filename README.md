@@ -26,12 +26,12 @@ Attrs.merge(%{"foo" => 1}, %{"bar" => 2}) == %{"foo" => 1, "bar" => 2}
 Attrs.merge(%{foo: 1}, %{bar: 2}) == %{foo: 1, bar: 2}
 ```
 
-## Attrs.normalize_keys(attrs)
+## Attrs.normalize(attrs)
 
 ```elixir
-Attrs.normalize_keys(%{"foo" => 1, bar: 2}) == %{"foo" => 1, "bar" => 2}
-Attrs.normalize_keys(%{foo: 1, bar: 2}) == %{foo: 1, bar: 2}
-Attrs.normalize_keys(%{"foo" => 1, "bar" => 2}) == %{"foo" => 1, "bar" => 2}
+Attrs.normalize(%{"foo" => 1, bar: 2}) == %{"foo" => 1, "bar" => 2}
+Attrs.normalize(%{foo: 1, bar: 2}) == %{foo: 1, bar: 2}
+Attrs.normalize(%{"foo" => 1, "bar" => 2}) == %{"foo" => 1, "bar" => 2}
 ```
 
 ## Installation

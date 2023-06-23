@@ -33,7 +33,7 @@ defmodule Attrs do
     raise "key passed to Attrs.put/3 must be an atom"
   end
 
-  def normalize_keys(%{} = attrs) do
+  def normalize(%{} = attrs) do
     cond do
       Enum.all?(attrs, fn {key, _} -> is_atom(key) end) -> attrs
       Enum.all?(attrs, fn {key, _} -> is_binary(key) end) -> attrs

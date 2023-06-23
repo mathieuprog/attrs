@@ -33,10 +33,10 @@ defmodule AttrsTest do
     assert Attrs.merge(%{}, %{foo: 1}) == %{foo: 1}
   end
 
-  test "normalize_keys" do
-    assert Attrs.normalize_keys(%{"foo" => 1, "bar" => 2}) == %{"foo" => 1, "bar" => 2}
-    assert Attrs.normalize_keys(%{"foo" => 1, bar: 2}) == %{"foo" => 1, "bar" => 2}
-    assert Attrs.normalize_keys(%{foo: 1, bar: 2}) == %{foo: 1, bar: 2}
-    assert Attrs.normalize_keys(%{}) == %{}
+  test "normalize" do
+    assert Attrs.normalize(%{"foo" => 1, "bar" => 2}) == %{"foo" => 1, "bar" => 2}
+    assert Attrs.normalize(%{"foo" => 1, bar: 2}) == %{"foo" => 1, "bar" => 2}
+    assert Attrs.normalize(%{foo: 1, bar: 2}) == %{foo: 1, bar: 2}
+    assert Attrs.normalize(%{}) == %{}
   end
 end
