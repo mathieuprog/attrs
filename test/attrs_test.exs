@@ -9,6 +9,12 @@ defmodule AttrsTest do
     assert Attrs.get(%{"bar" => 1}, :foo, 0) == 0
   end
 
+  test "has?" do
+    assert Attrs.has?(%{foo: 1}, :foo)
+    assert Attrs.has?(%{"foo" => 1}, :foo)
+    refute Attrs.has?(%{bar: 1}, :foo)
+  end
+
   test "put" do
     assert Attrs.put(%{"foo" => 1}, :bar, 2) == %{"foo" => 1, "bar" => 2}
     assert Attrs.put(%{foo: 1}, :bar, 2) == %{foo: 1, bar: 2}
