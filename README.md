@@ -18,6 +18,13 @@ Attrs.get(%{"foo" => 1}, :foo) == 1
 Attrs.get(%{foo: 1}, :bar, 2) == 2
 ```
 
+## Attrs.has?(attrs, key)
+
+```elixir
+Attrs.has?(%{foo: 1}, :foo) == true
+Attrs.has?(%{"foo" => 1}, :foo) == true
+```
+
 ## Attrs.merge(attrs1, attrs2)
 
 ```elixir
