@@ -1,6 +1,6 @@
 # Attrs
 
-Unifying atom and string key handling for user data (attrs maps) given to Ecto's cast function
+Unifying atom and string key handling for user data (attrs maps) given to Ecto's cast function.
 
 ## Attrs.put(attrs, key, value)
 
@@ -15,14 +15,20 @@ Attrs.put(%{}, :bar, 2) == %{bar: 2}
 ```elixir
 Attrs.get(%{foo: 1}, :foo) == 1
 Attrs.get(%{"foo" => 1}, :foo) == 1
+Attrs.get(%{foo: 1}, :bar) == nil
 Attrs.get(%{foo: 1}, :bar, 2) == 2
 ```
 
 ## Attrs.has?(attrs, key)
 
 ```elixir
+<<<<<<< HEAD
 Attrs.has?(%{foo: 1}, :foo) == true
 Attrs.has?(%{"foo" => 1}, :foo) == true
+=======
+Attrs.put(%{"foo" => 1}, :bar, 2) == %{"foo" => 1, "bar" => 2}
+Attrs.put(%{foo: 1}, :bar, 2) == %{foo: 1, bar: 2}
+>>>>>>> db2234f86e01bc4255d87b6effc52478d36ed34e
 ```
 
 ## Attrs.merge(attrs1, attrs2)
