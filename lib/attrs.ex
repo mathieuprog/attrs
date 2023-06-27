@@ -6,11 +6,15 @@ defmodule Attrs do
   end
 
   def get(%{}, key, _default) when is_binary(key) do
-    raise "key passed to Attrs.get/3 must be an atom"
+    raise ArgumentError, message: "key passed to Attrs.get/3 must be an atom"
   end
 
   def has?(attrs, key) when is_atom(key) do
     Map.has_key?(attrs, key) || Map.has_key?(attrs, to_string(key))
+  end
+
+  def has?(%{}, key) when is_binary(key) do
+    raise ArgumentError, message: "key passed to Attrs.has?/2 must be an atom"
   end
 
   def put(%{} = attrs, key, value) when is_atom(key) and map_size(attrs) == 0 do
@@ -30,7 +34,7 @@ defmodule Attrs do
   end
 
   def put(%{}, key, _value) when is_binary(key) do
-    raise "key passed to Attrs.put/3 must be an atom"
+    raise ArgumentError, message: "key passed to Attrs.put/3 must be an atom"
   end
 
   def normalize(%{} = attrs) do
