@@ -69,8 +69,8 @@ defmodule Attrs do
   end
 
   defp keys_of_different_types?(key1, key2) do
-    (is_binary(key1) && is_atom(key2))
-    || (is_atom(key1) && is_binary(key2))
+    (is_binary(key1) && is_atom(key2)) ||
+      (is_atom(key1) && is_binary(key2))
   end
 
   defp map_keys_to_string_keys(%{} = map),

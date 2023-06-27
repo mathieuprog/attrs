@@ -13,7 +13,8 @@ defmodule Attrs.MixProject do
       # Hex
       version: @version,
       package: package(),
-      description: "Unifying atom and string key handling for user data (attrs maps) given to Ecto's cast function",
+      description:
+        "Unifying atom and string key handling for user data (attrs maps) given to Ecto's cast function",
 
       # ExDoc
       name: "Attrs",
