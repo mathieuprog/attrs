@@ -11,6 +11,10 @@ user_id = attrs[:user_id] || attrs["user_id"]
 
 ## Solution
 
+```elixir
+user_id = Attrs.get(attrs, :user_id)
+```
+
 Attrs enables handling of maps irrespective of whether they contain atom or string keys. It eliminates the distinction between the two key types, simplifying code when working with external data maps passed to `cast/4`.
 
 Why "Attrs"? In Phoenix Contexts, user parameters and external data are often labeled as attrs, hence the name of this package.
