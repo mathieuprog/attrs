@@ -13,13 +13,13 @@ defmodule AttrsTest do
     end
   end
 
-  test "has?" do
-    assert Attrs.has?(%{foo: 1}, :foo)
-    assert Attrs.has?(%{"foo" => 1}, :foo)
-    refute Attrs.has?(%{bar: 1}, :foo)
+  test "has_key?" do
+    assert Attrs.has_key?(%{foo: 1}, :foo)
+    assert Attrs.has_key?(%{"foo" => 1}, :foo)
+    refute Attrs.has_key?(%{bar: 1}, :foo)
 
     assert_raise ArgumentError, ~r"atom", fn ->
-      Attrs.has?(%{}, "foo")
+      Attrs.has_key?(%{}, "foo")
     end
   end
 
@@ -45,10 +45,10 @@ defmodule AttrsTest do
     assert Attrs.merge(%{}, %{foo: 1}) == %{foo: 1}
   end
 
-  test "normalize" do
-    assert Attrs.normalize(%{"foo" => 1, "bar" => 2}) == %{"foo" => 1, "bar" => 2}
-    assert Attrs.normalize(%{"foo" => 1, bar: 2}) == %{"foo" => 1, "bar" => 2}
-    assert Attrs.normalize(%{foo: 1, bar: 2}) == %{foo: 1, bar: 2}
-    assert Attrs.normalize(%{}) == %{}
+  test "normalize_keys" do
+    assert Attrs.normalize_keys(%{"foo" => 1, "bar" => 2}) == %{"foo" => 1, "bar" => 2}
+    assert Attrs.normalize_keys(%{"foo" => 1, bar: 2}) == %{"foo" => 1, "bar" => 2}
+    assert Attrs.normalize_keys(%{foo: 1, bar: 2}) == %{foo: 1, bar: 2}
+    assert Attrs.normalize_keys(%{}) == %{}
   end
 end

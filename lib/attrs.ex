@@ -9,12 +9,12 @@ defmodule Attrs do
     raise ArgumentError, message: "key passed to Attrs.get/3 must be an atom"
   end
 
-  def has?(attrs, key) when is_atom(key) do
+  def has_key?(attrs, key) when is_atom(key) do
     Map.has_key?(attrs, key) || Map.has_key?(attrs, to_string(key))
   end
 
-  def has?(%{}, key) when is_binary(key) do
-    raise ArgumentError, message: "key passed to Attrs.has?/2 must be an atom"
+  def has_key?(%{}, key) when is_binary(key) do
+    raise ArgumentError, message: "key passed to Attrs.has_key?/2 must be an atom"
   end
 
   def put(%{} = attrs, key, value) when is_atom(key) and map_size(attrs) == 0 do
@@ -37,7 +37,7 @@ defmodule Attrs do
     raise ArgumentError, message: "key passed to Attrs.put/3 must be an atom"
   end
 
-  def normalize(%{} = attrs) do
+  def normalize_keys(%{} = attrs) do
     cond do
       Enum.all?(attrs, fn {key, _} -> is_atom(key) end) -> attrs
       Enum.all?(attrs, fn {key, _} -> is_binary(key) end) -> attrs
@@ -68,10 +68,9 @@ defmodule Attrs do
     end
   end
 
-  defp keys_of_different_types?(key1, key2) do
-    (is_binary(key1) && is_atom(key2)) ||
-      (is_atom(key1) && is_binary(key2))
-  end
+  defp keys_of_different_types?(key1, key2) when is_binary(key1) and is_atom(key2), do: true
+  defp keys_of_different_types?(key1, key2) when is_atom(key1) and is_binary(key2), do: true
+  defp keys_of_different_types?(_key1, _key2), do: false
 
   defp map_keys_to_string_keys(%{} = map),
     do: for({key, val} <- map, into: %{}, do: {to_string(key), val})
