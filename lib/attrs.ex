@@ -54,23 +54,22 @@ defmodule Attrs do
   end
 
   def merge(%{} = attrs1, %{} = attrs2) do
-    [existing_key1 | _] = Map.keys(attrs1)
-    [existing_key2 | _] = Map.keys(attrs2)
+    [key1 | _] = Map.keys(attrs1)
+    [key2 | _] = Map.keys(attrs2)
 
     cond do
-      keys_of_different_types?(existing_key1, existing_key2) ->
-        attrs1 = if(is_atom(existing_key1), do: map_keys_to_string_keys(attrs1), else: attrs1)
-        attrs2 = if(is_atom(existing_key2), do: map_keys_to_string_keys(attrs2), else: attrs2)
+      is_binary(key1) and is_atom(key2) ->
+        attrs2 = map_keys_to_string_keys(attrs2)
+        Map.merge(attrs1, attrs2)
+
+      is_binary(key2) and is_atom(key1) ->
+        attrs1 = map_keys_to_string_keys(attrs1)
         Map.merge(attrs1, attrs2)
 
       true ->
         Map.merge(attrs1, attrs2)
     end
   end
-
-  defp keys_of_different_types?(key1, key2) when is_binary(key1) and is_atom(key2), do: true
-  defp keys_of_different_types?(key1, key2) when is_atom(key1) and is_binary(key2), do: true
-  defp keys_of_different_types?(_key1, _key2), do: false
 
   defp map_keys_to_string_keys(%{} = map),
     do: for({key, val} <- map, into: %{}, do: {to_string(key), val})
