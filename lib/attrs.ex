@@ -22,7 +22,7 @@ defmodule Attrs do
   end
 
   def put(%{} = attrs, key, value) when is_atom(key) do
-    [existing_key | _] = Map.keys(attrs)
+    {existing_key, _} = Enum.at(attrs, 0)
 
     cond do
       is_binary(existing_key) ->
@@ -58,8 +58,8 @@ defmodule Attrs do
   end
 
   def merge(%{} = attrs1, %{} = attrs2) do
-    [key1 | _] = Map.keys(attrs1)
-    [key2 | _] = Map.keys(attrs2)
+    {key1, _} = Enum.at(attrs1, 0)
+    {key2, _} = Enum.at(attrs2, 0)
 
     cond do
       is_binary(key1) and is_atom(key2) ->
