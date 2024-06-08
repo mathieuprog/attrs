@@ -45,6 +45,10 @@ defmodule Attrs do
     end
   end
 
+  def stringify_keys(%{} = attrs) do
+    map_keys_to_string_keys(attrs)
+  end
+
   def merge(%{} = attrs1, %{} = attrs2) when map_size(attrs1) == 0 do
     attrs2
   end
