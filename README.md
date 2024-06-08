@@ -21,16 +21,6 @@ Why "Attrs"? In Phoenix Contexts, user parameters and external data are often la
 
 ## Attrs module
 
-### `Attrs.put(attrs, key, value)`
-
-```elixir
-# If the map contains string keys, ensure the new entry is added with a string key
-Attrs.put(%{"foo" => 1}, :bar, 2) == %{"foo" => 1, "bar" => 2}
-
-# If the map contains atom keys, ensure the new entry is added with an atom key
-Attrs.put(%{foo: 1}, :bar, 2) == %{foo: 1, bar: 2}
-```
-
 ### `Attrs.get(attrs, key, default)`
 
 ```elixir
@@ -50,14 +40,22 @@ Attrs.has_key?(%{foo: 1}, :foo) == true
 Attrs.has_key?(%{"foo" => 1}, :foo) == true
 ```
 
+### `Attrs.put(attrs, key, value)`
+
+```elixir
+# Preserve key type based on the first key returned from `Map.keys/1`.
+Attrs.put(%{"foo" => 1}, :bar, 2) == %{"foo" => 1, "bar" => 2}
+Attrs.put(%{foo: 1}, :bar, 2) == %{foo: 1, bar: 2}
+```
+
 ### `Attrs.merge(attrs1, attrs2)`
 
 ```elixir
-# If either of the input maps has string keys, the merged map will also use string keys
+# Preserve key type based on the first key returned from `Map.keys/1`.
+# If the key of either input map is a string key, the merged map will use string keys.
+# If the keys of both input maps are atom keys, the merged map will use atom keys.
 Attrs.merge(%{"foo" => 1}, %{bar: 2}) == %{"foo" => 1, "bar" => 2}
 Attrs.merge(%{"foo" => 1}, %{"bar" => 2}) == %{"foo" => 1, "bar" => 2}
-
-# If both input maps use atom keys, the merged map will maintain the use of atom keys
 Attrs.merge(%{foo: 1}, %{bar: 2}) == %{foo: 1, bar: 2}
 ```
 

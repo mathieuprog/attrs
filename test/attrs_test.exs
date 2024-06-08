@@ -25,6 +25,7 @@ defmodule AttrsTest do
 
   test "put" do
     assert Attrs.put(%{"foo" => 1}, :bar, 2) == %{"foo" => 1, "bar" => 2}
+    assert Attrs.put(%{:foo => 1, "bar" => 2}, :baz, 3) == %{:foo => 1, "bar" => 2, :baz => 3}
     assert Attrs.put(%{foo: 1}, :bar, 2) == %{foo: 1, bar: 2}
     assert Attrs.put(%{}, :foo, 1) == %{foo: 1}
 
