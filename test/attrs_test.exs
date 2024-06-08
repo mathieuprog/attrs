@@ -23,6 +23,12 @@ defmodule AttrsTest do
     end
   end
 
+  test "has_keys?/2" do
+    assert Attrs.has_keys?(%{"baz" => 3, foo: 1, bar: 2}, [:foo, :baz])
+    assert Attrs.has_keys?(%{"foo" => 1}, [:foo])
+    refute Attrs.has_keys?(%{foo: 1, bar: 2}, [:foo, :baz])
+  end
+
   test "put/3" do
     assert Attrs.put(%{"foo" => 1}, :bar, 2) == %{"foo" => 1, "bar" => 2}
     assert Attrs.put(%{:foo => 1, "bar" => 2}, :baz, 3) == %{:foo => 1, "bar" => 2, :baz => 3}

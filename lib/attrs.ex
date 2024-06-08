@@ -17,6 +17,10 @@ defmodule Attrs do
     raise ArgumentError, message: "key passed to Attrs.has_key?/2 must be an atom"
   end
 
+  def has_keys?(attrs, keys) when is_list(keys) do
+    Enum.all?(keys, &has_key?(attrs, &1))
+  end
+
   def put(%{} = attrs, key, value) when is_atom(key) and map_size(attrs) == 0 do
     %{key => value}
   end
