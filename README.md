@@ -85,7 +85,7 @@ Add `attrs` for Elixir as a dependency in your `mix.exs` file:
 ```elixir
 def deps do
   [
-    {:attrs, "~> 0.4.0"}
+    {:attrs, "~> 0.5.0"}
   ]
 end
 ```
