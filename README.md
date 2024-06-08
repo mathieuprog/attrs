@@ -40,6 +40,11 @@ Attrs.has_key?(%{foo: 1}, :foo) == true
 Attrs.has_key?(%{"foo" => 1}, :foo) == true
 ```
 
+### `Attrs.has_keys?(attrs, key)`
+
+```elixir
+Attrs.has_keys?(%{foo: 1, bar: 2, "baz" => 3}, [:foo, :baz]) == true
+```
 ### `Attrs.put(attrs, key, value)`
 
 ```elixir
